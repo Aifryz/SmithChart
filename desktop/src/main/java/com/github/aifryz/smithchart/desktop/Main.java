@@ -9,11 +9,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-
+import com.github.aifryz.smithchart.core.ChartModel;
 public class Main extends Application{
 
     public static void main(String[]args){
+        ChartModel model = new ChartModel();
+        System.out.print(model.add3(5));
         launch(args);
+
     }
 
     @Override

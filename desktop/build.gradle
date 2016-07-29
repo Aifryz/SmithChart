@@ -11,11 +11,15 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile project(':core')
 }
 jar {
     manifest {
         attributes (
             "Main-Class": 'com.github.aifryz.smithchart.desktop.Main'
         )
+    }
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
     }
 }

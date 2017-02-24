@@ -1,14 +1,17 @@
 package com.github.aifryz.smithchart.core;
 
+import javafx.scene.chart.Chart;
+
 import java.util.Vector;
 
 /**
  * Created by Aifryz on 2016-08-02.
  */
 public class ChartElement {
-    public ChartElement(double value)
+    public ChartElement(double value, Type type)
     {
         m_value = value;
+        m_type = type;
     }
     public ChartElement()
     {
@@ -22,24 +25,15 @@ public class ChartElement {
         B_ARC,
         SWR_CIRCLE
     }
+    private Type m_type;
     private double m_value;
     public Type getType()
     {
-        return Type.R_CIRCLE;
+        return m_type;
     }
     public double getValue()
     {
         return m_value;
-    }
-    public Point getCenter()
-    {
-        Point p = new Point();
-        p.x = m_value/(1.0+m_value);
-        p.y = 0;
-        return p;
-    }
-    public double getRadius() {
-        return 1/Math.abs(1+m_value);
     }
 
 

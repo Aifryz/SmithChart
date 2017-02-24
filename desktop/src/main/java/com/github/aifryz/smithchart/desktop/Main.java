@@ -40,12 +40,13 @@ public class Main extends Application{
                 }
             }
             ChartModel model = new ChartModel();
-            model.m_elements.add(new ChartElement(0.1));
-            model.m_elements.add(new ChartElement(1));
-            model.m_elements.add(new ChartElement(10));
-            model.m_elements.add(new ChartElement(50));
-            model.m_elements.add(new ChartElement(100));
-            model.m_elements.add(new ChartElement(200));
+            model.m_elements.add(new ChartElement(0, ChartElement.Type.R_CIRCLE));
+            model.m_elements.add(new ChartElement(0.1, ChartElement.Type.R_CIRCLE));
+            model.m_elements.add(new ChartElement(0.1, ChartElement.Type.X_ARC));
+            model.m_elements.add(new ChartElement(1,ChartElement.Type.X_ARC));
+            model.m_elements.add(new ChartElement(1, ChartElement.Type.R_CIRCLE));
+            model.m_elements.add(new ChartElement(10, ChartElement.Type.X_ARC));
+            model.m_elements.add(new ChartElement(10, ChartElement.Type.R_CIRCLE));
             ChartRenderer ren = new ChartRenderer(m_chart_context);
             ren.redraw(model);
             primaryStage.setTitle("FXML Welcome");

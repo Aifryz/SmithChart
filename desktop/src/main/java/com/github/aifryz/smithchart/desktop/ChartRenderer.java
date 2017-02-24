@@ -3,6 +3,8 @@ package com.github.aifryz.smithchart.desktop;
 import com.github.aifryz.smithchart.core.*;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.ArcType;
 
 /**
  * Created by Aifryz on 2016-08-02.
@@ -20,23 +22,31 @@ public class ChartRenderer {
     }
     public void redraw(ChartModel model)
     {
+        final double SCALE = 100;
+        final double OFFSET = 100;
+
         for (ChartElement el:model.m_elements){
             switch (el.getType())
             {
-                case R_CIRCLE:
-                    Point p = el.getCenter();
-                    p.x *=50;
-                    p.y *=50;
-                    //translate from center to left-right corner
-
-
-                    double r = el.getRadius();
-                    r*=50;
-                    p.x -=r;
-                    p.y -=r;
-                    m_context.setStroke(Color.RED);
-
-                    m_context.strokeOval(p.x+50,p.y+50,r*2,r*2);
+                case R_CIRCLE: {
+                    double resistance = el.getValue();
+                    double radius = 1 / (1 + resistance)*SCALE;
+                    double x = resistance / (1 + resistance)*SCALE - radius +50;
+                    double y = 0 - radius + 50;
+                    m_context.setStroke(Color.PALEGOLDENROD);
+                    m_context.strokeOval(x,y,radius*2,radius*2);
+                }
+                    break;
+                case X_ARC: {
+                    double reactance = el.getValue();
+                    double radius = 1 / Math.abs(reactance)*SCALE;
+                    double x = 1*SCALE - radius +50;
+                    double y = 1 / reactance*SCALE -radius+50;
+                    m_context.setStroke(Color.AQUAMARINE);
+                    m_context.strokeArc(x,y,radius*2,radius*2,90,180, ArcType.OPEN);
+                }
+                    break;
+                default:
                     break;
             }
 

@@ -1,8 +1,13 @@
 #Directories
 build/
 .gradle/
+grade/
 .idea/
 out/
+
+#gradle
+gradlew.bin
+gradlew
 
 #Subdirectories
 core/build/
